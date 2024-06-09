@@ -1,10 +1,15 @@
 package com.devopswithprashant.api.test.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devopswithprashant.api.test.entities.Blog;
+import com.devopswithprashant.api.test.service.BlogService;
 
-import org.springframework.web.bind.annotation.GetMapping;
 
 
 
@@ -12,18 +17,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RestController
 public class BlogController {
 
-    @GetMapping("/blog")
-    public Blog getBlogs() {
-        
-        Blog blog = new Blog();
-        blog.setId(2345);
-        blog.setTitle("DEvOps roadmap");
-        blog.setBody("This is my test body content");
-        blog.setAuthor("Prajapati, Prashant");
-        blog.setPublishdate("31-10-2022");
-        blog.setLastupdatedate("10-06-2023");
+    @Autowired
+    private BlogService blogService;
 
-        return blog;
+    @GetMapping("/blogs")
+    public List<Blog> getBlogs() {
+        return this.blogService.getAllBlogs();
+    }
+
+    @GetMapping("/blogs/{id}")
+    public Blog getBlog(@PathVariable("id") int id) {
+        return blogService.getBlogById(id);
     }
 
 }
