@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.devopswithprashant.api.test.entities.Blog;
 import com.devopswithprashant.api.test.service.BlogService;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -48,6 +50,14 @@ public class BlogController {
     public void deleteBlog(@PathVariable("blogID") int id) {
         this.blogService.deleteblog(id);
     }
+
+
+    //update blog handler
+    @PutMapping("/blog/{id}")
+    public void putUpdateBlog(@PathVariable("id") int id, @RequestBody Blog blog) {
+        this.blogService.updateblog(blog, id);
+    }
+    
     
     
     

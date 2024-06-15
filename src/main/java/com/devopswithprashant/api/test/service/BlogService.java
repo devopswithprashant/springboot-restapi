@@ -36,8 +36,22 @@ public class BlogService {
         list.add(blog);
     }
 
+    //delete the blog
     public void deleteblog(int id) {
         list=list.stream().filter(blog -> blog.getId() != id).collect(Collectors.toList());
+    }
+
+    public void updateblog(Blog blog, int id) {
+        list = list.stream().map(b-> {
+            if(b.getId() == id) {
+                b.setTitle(blog.getTitle());
+                b.setBody(blog.getBody());
+                b.setAuthor(blog.getAuthor());
+                b.setLastupdatedate(blog.getLastupdatedate());
+                b.setPublishdate(blog.getPublishdate());
+            }
+            return b;
+        }).collect(Collectors.toList());
     }
 
 }
