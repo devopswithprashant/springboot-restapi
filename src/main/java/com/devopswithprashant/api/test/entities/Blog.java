@@ -1,8 +1,19 @@
 package com.devopswithprashant.api.test.entities;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Blog {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="book_id")
     private int id;
+
     private String title;
     private String body;
     private String author;
