@@ -18,14 +18,21 @@ public class BlogService {
         list.add(new Blog(98875, "networking roadmap", "this is my content of networking", "Verma, Shreya", "11-08-2020", "31-01-2021"));
     }
 
+    // get all blog
     public List<Blog> getAllBlogs() {
         return list;
     }
 
+    // get specific blog by ID 
     public Blog getBlogById(int id) {
         Blog blog = null;
         blog=list.stream().filter(e->e.getId()==id).findFirst().get();
         return blog;
+    }
+
+    //adding the blog
+    public void addBlog(Blog blog) {
+        list.add(blog);
     }
 
 }

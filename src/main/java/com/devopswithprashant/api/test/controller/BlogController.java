@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.devopswithprashant.api.test.entities.Blog;
 import com.devopswithprashant.api.test.service.BlogService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 
@@ -29,5 +32,13 @@ public class BlogController {
     public Blog getBlog(@PathVariable("id") int id) {
         return blogService.getBlogById(id);
     }
+
+    @PostMapping("/blogs")
+    public void addBlog(@RequestBody Blog blog) {
+        this.blogService.addBlog(blog);
+        //return blog;
+    }
+    
+   
 
 }
