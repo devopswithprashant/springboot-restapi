@@ -1,8 +1,11 @@
 package com.devopswithprashant.api.test.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,33 +32,60 @@ public class BlogController {
 
     //get all blog handler
     @GetMapping("/blogs")
-    public List<Blog> getBlogs() {
-        return this.blogService.getAllBlogs();
+    public ResponseEntity<List<Blog>> getBlogs() {
+        List<Blog> list = this.blogService.getAllBlogs();
+        if (list.size() <= 0) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.of(Optional.of(list));
     }
 
     //get single blog handler
     @GetMapping("/blogs/{id}")
-    public Blog getBlog(@PathVariable("id") int id) {
-        return blogService.getBlogById(id);
+    public ResponseEntity<Blog> getBlog(@PathVariable("id") int id) {
+        Blog blog = this.blogService.getBlogById(id);
+        if(blog == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.of(Optional.of(blog));
     }
 
     //add new blog handler
     @PostMapping("/blogs")
-    public void addBlog(@RequestBody Blog blog) {
-        this.blogService.addBlog(blog);
+    public ResponseEntity<Void> addBlog(@RequestBody Blog blog) {
+        try {
+            this.blogService.addBlog(blog);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        
     }
 
     //delete a blog by ID
     @DeleteMapping("/blog/{blogID}")
-    public void deleteBlog(@PathVariable("blogID") int id) {
-        this.blogService.deleteblog(id);
+    public ResponseEntity<Void> deleteBlog(@PathVariable("blogID") int id) {
+        try {
+            this.blogService.deleteblog(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
 
     //update blog handler
     @PutMapping("/blog/{id}")
-    public void putUpdateBlog(@PathVariable("id") int id, @RequestBody Blog blog) {
-        this.blogService.updateblog(blog, id);
+    public ResponseEntity<Blog> putUpdateBlog(@PathVariable("id") int id, @RequestBody Blog blog) {
+        try {
+            this.blogService.updateblog(blog, id);
+            return ResponseEntity.ok().body(blog);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        
     }
     
     

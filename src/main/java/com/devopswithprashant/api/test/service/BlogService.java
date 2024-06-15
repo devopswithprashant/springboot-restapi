@@ -27,7 +27,11 @@ public class BlogService {
     // get specific blog by ID 
     public Blog getBlogById(int id) {
         Blog blog = null;
-        blog=list.stream().filter(e->e.getId()==id).findFirst().get();
+        try {
+            blog=list.stream().filter(e->e.getId()==id).findFirst().get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return blog;
     }
 
@@ -38,7 +42,11 @@ public class BlogService {
 
     //delete the blog
     public void deleteblog(int id) {
-        list=list.stream().filter(blog -> blog.getId() != id).collect(Collectors.toList());
+        try {
+            list=list.stream().filter(blog -> blog.getId() != id).collect(Collectors.toList());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void updateblog(Blog blog, int id) {
