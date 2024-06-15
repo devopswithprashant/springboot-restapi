@@ -1,10 +1,11 @@
 package com.devopswithprashant.api.test.service;
-import com.devopswithprashant.api.test.entities.Blog;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
+
+import com.devopswithprashant.api.test.entities.Blog;
 
 @Component
 public class BlogService {
@@ -33,6 +34,10 @@ public class BlogService {
     //adding the blog
     public void addBlog(Blog blog) {
         list.add(blog);
+    }
+
+    public void deleteblog(int id) {
+        list=list.stream().filter(blog -> blog.getId() != id).collect(Collectors.toList());
     }
 
 }
