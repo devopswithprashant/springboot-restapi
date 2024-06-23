@@ -87,6 +87,12 @@ public class BlogController {
         }
         
     }
+
+
+    @GetMapping("/blogs/exist/{id}")
+    public boolean isBlogExistById(@PathVariable int id) {
+        return blogService.isBlogExistById(id);
+    }
     
     
     

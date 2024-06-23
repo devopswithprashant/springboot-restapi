@@ -71,4 +71,8 @@ public class BlogService {
         this.blogRepository.save(blog);
     }
 
+    public boolean isBlogExistById(int id) {
+        return blogRepository.isBlogExistById(id);
+    }
+
 }
