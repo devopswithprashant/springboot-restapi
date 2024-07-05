@@ -14,8 +14,8 @@
 	<description>Demo project for Spring Boot</description>
 
 	<scm>
-		<connection>scm:git:git://github.com/devopswithprashant/springboot-restapi.git</connection>
-		<developerConnection>scm:git:ssh://github.com/devopswithprashant/springboot-restapi.git</developerConnection>
+		<connection>scm:git:https://github.com/devopswithprashant/springboot-restapi.git</connection>
+    	<developerConnection>scm:git:https://github.com/devopswithprashant/springboot-restapi.git</developerConnection>
 		<tag>HEAD</tag>
 		<url>https://github.com/devopswithprashant/springboot-restapi</url>
 	</scm>
