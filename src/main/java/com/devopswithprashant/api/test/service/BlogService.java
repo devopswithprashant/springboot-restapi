@@ -41,9 +41,9 @@ public class BlogService {
     }
 
     //adding the blog
-    public void addBlog(Blog blog) {
+    public Blog addBlog(Blog blog) {
         //list.add(blog);
-        this.blogRepository.save(blog);
+        return this.blogRepository.save(blog);
     }
 
     //delete the blog
