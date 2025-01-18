@@ -41,9 +41,9 @@ public class BlogService {
     }
 
     //adding the blog
-    public void addBlog(Blog blog) {
+    public Blog addBlog(Blog blog) {
         //list.add(blog);
-        this.blogRepository.save(blog);
+        return this.blogRepository.save(blog);
     }
 
     //delete the blog
@@ -69,10 +69,6 @@ public class BlogService {
         // }).collect(Collectors.toList());
         blog.setId(id);
         this.blogRepository.save(blog);
-    }
-
-    public boolean isBlogExistById(int id) {
-        return blogRepository.isBlogExistById(id);
     }
 
 }

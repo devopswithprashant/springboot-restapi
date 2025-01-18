@@ -52,15 +52,15 @@ public class BlogController {
 
     //add new blog handler
     @PostMapping("/blogs")
-    public ResponseEntity<Void> addBlog(@RequestBody Blog blog) {
+    public ResponseEntity<Blog> addBlog(@RequestBody Blog blog) {
         try {
-            this.blogService.addBlog(blog);
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            Blog savedblog = this.blogService.addBlog(blog);
+            //return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            return ResponseEntity.ok().body(savedblog);
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        
     }
 
     //delete a blog by ID
@@ -86,12 +86,6 @@ public class BlogController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         
-    }
-
-
-    @GetMapping("/blogs/exist/{id}")
-    public boolean isBlogExistById(@PathVariable int id) {
-        return blogService.isBlogExistById(id);
     }
     
     
