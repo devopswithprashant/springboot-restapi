@@ -13,6 +13,22 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>test</name>
 	<description>Demo project for Spring Boot</description>
+
+
+
+	<distributionManagement>
+		<repository>
+			<id>myreleaserepo</id>
+			<url>http://54.172.87.199:8082/artifactory/myorg-release-local/</url>
+		</repository>
+		<snapshotRepository>
+			<id>mysnapshotrepo</id>
+			<url>http://54.172.87.199:8082/artifactory/myorg-snapshot-local/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+
+
 	<properties>
 		<java.version>17</java.version>
 	</properties>
