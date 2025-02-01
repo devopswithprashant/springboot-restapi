@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>com.devopswithprashant.api</groupId>
 	<artifactId>test</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.1</version>
 	<name>test</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -29,7 +29,7 @@
 	<scm>
 		<connection>scm:git:https://github.com/devopswithprashant/springboot-restapi.git</connection>
     	<developerConnection>scm:git:https://github.com/devopswithprashant/springboot-restapi.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>1.0.1</tag>
 	</scm>
 
 
